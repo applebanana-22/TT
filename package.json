@@ -1,0 +1,19 @@
+{
+  "name": "social-poster",
+  "version": "1.0.0",
+  "description": "Small learning project: connect Facebook Pages + TikTok via OAuth and publish a photo.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node --env-file=.env src/server.js",
+    "dev": "node --env-file=.env --watch src/server.js",
+    "gen-key": "node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^2.0.2"
+  }
+}

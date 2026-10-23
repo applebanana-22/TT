@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Social Poster</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Social Poster</h1>
+    <p class="muted">Connect Facebook & TikTok, then publish a photo.</p>
+  </header>
+
+  <main>
+    <div id="banner" class="banner" hidden></div>
+    <div id="originWarning" class="banner warn" hidden></div>
+
+    <section>
+      <h2>1. Accounts</h2>
+      <div id="accounts" class="cards"></div>
+    </section>
+
+    <section>
+      <h2>2. Create post</h2>
+      <form id="composer" class="panel">
+        <div class="row photo-row">
+          <label class="dropzone" id="dropzone">
+            <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp,image/gif" hidden />
+            <img id="preview" alt="" hidden />
+            <span id="dropText">Click or drop a photo<br /><small class="muted">JPEG / WEBP for TikTok · max 4 MB for Facebook</small></span>
+          </label>
+          <div class="grow">
+            <label for="caption">Caption</label>
+            <textarea id="caption" name="caption" rows="5" maxlength="4000" placeholder="Write something…"></textarea>
+            <div class="muted small"><span id="captionCount">0</span> / 4000</div>
+            <div id="fileInfo" class="small muted"></div>
+          </div>
+        </div>
+
+        <fieldset class="targets">
+          <legend>Post to</legend>
+          <label class="check"><input type="checkbox" name="target" value="facebook" /> Facebook Page <span class="small muted" id="fbTargetHint"></span></label>
+          <label class="check"><input type="checkbox" name="target" value="tiktok" /> TikTok <span class="small muted" id="ttTargetHint"></span></label>
+        </fieldset>
+
+        <fieldset id="tiktokOptions" class="tiktok-options" hidden>
+          <legend>TikTok options</legend>
+          <div id="creatorInfo" class="creator muted small">Loading creator info…</div>
+
+          <div class="row">
+            <label class="check"><input type="radio" name="tiktokMode" value="DIRECT_POST" checked /> Direct post</label>
+            <label class="check"><input type="radio" name="tiktokMode" value="MEDIA_UPLOAD" /> Send to TikTok inbox (draft)</label>
+          </div>
+
+          <div id="directOnly">
+            <label for="tiktokPrivacy">Who can view this post <span class="req">*</span></label>
+            <select id="tiktokPrivacy">
+              <option value="">Select privacy…</option>
+            </select>
+            <label class="check"><input type="checkbox" id="tiktokDisableComment" /> Disable comments</label>
+            <label class="check"><input type="checkbox" id="tiktokAutoMusic" checked /> Add recommended music</label>
+          </div>
+
+          <label for="tiktokTitle">Title <span class="muted small">(optional, max 90)</span></label>
+          <input id="tiktokTitle" maxlength="90" placeholder="Defaults to the first line of the caption" />
+
+          <p class="small muted">By posting, you agree to TikTok's
+            <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a>.
+            Unaudited apps can only post as <b>Only me</b> (SELF_ONLY).</p>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="submitBtn" class="primary">Publish</button>
+          <span id="submitStatus" class="small muted"></span>
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2>3. History</h2>
+      <div id="posts" class="posts"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
